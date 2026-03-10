@@ -45,14 +45,14 @@ def config():
     system = XHeep(BusType.NtoM)
 
     # Set cv32e40px CPU
-    system.set_cpu(CPU("cv32e40px"))
+    system.set_cpu(CPU("cv32e40p"))
 
     # Memory subsystem
     # - 2 x 32kiB firmware and data
     # - 2 x 16kiB interleaved banks
     memory_ss = MemorySS()
-    memory_ss.add_ram_banks([32] * 2)
-    memory_ss.add_ram_banks_il(4, 16, "data_interleaved")
+    memory_ss.add_ram_banks([32] * 8)
+    memory_ss.add_ram_banks_il(8, 32, "data_interleaved")
     # Linker script sections
     memory_ss.add_linker_section(LinkerSection.by_size("code", 0, 0x0000E800))
     memory_ss.add_linker_section(LinkerSection("data", 0x0000E800, None))
@@ -114,7 +114,7 @@ def config():
 
 def gr_heep_config():
 
-    ext_xbar_nmasters = 0
+    ext_xbar_nmasters = 8
 
     # External slaves memory map
     ext_xbar_slaves = {
@@ -130,10 +130,10 @@ def gr_heep_config():
 
     # External peripherals
     ext_periph = {
-        #     "peripheral_0": {
-        #         "offset": 0x00000000,
-        #         "length": 0x00001000,
-        #     },
+        "strela": {
+            "offset": 0x00000000,
+            "length": 0x00001000,
+        },
         #     "peripheral_1": {
         #         "offset": 0x00001000,
         #         "length": 0x00001000,
@@ -146,7 +146,7 @@ def gr_heep_config():
 
     ao_spc_num = 1
 
-    external_interrupts = 0
+    external_interrupts = 1
 
     # vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
     # Do not modify below this line unless you know what you are doing
