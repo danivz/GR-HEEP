@@ -253,6 +253,7 @@ targets:
         - -suppress vlog-2720
         - -pedanticerrors
         - -define MODELSIM
+        - +incdir+/eda/synopsys/2024-25/RHELx86/SYN_2024.09-SP2/dw/sim_ver/
         vsim_options:
         - -sv_lib ../../../hw/vendor/x-heep/hw/vendor/lowrisc_opentitan/hw/dv/dpi/uartdpi/uartdpi
         - -sv_lib ../../../hw/vendor/x-heep/hw/vendor/pulp_platform_pulpissimo/rtl/tb/remote_bitbang/librbs
